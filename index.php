@@ -28,7 +28,7 @@
     </select>
 	<br>
 	<label for="credits">Кредити</label>
-	<input type="number" id="credits" name="credits">
+	<input type="number" id="credits" name="credits" min="1" max="20">
 	<input type="submit" value="Submit">
 </form>
 

@@ -1,6 +1,5 @@
-Errors:
-Преподавател е задължително поле.
-Описание е задължително поле.
-Кредити е задължително поле.
-Valid operations:
-dggdgt
+Име на предмет: Advanced C++ 
+Име на преподавател: ----- 
+Описание на предмет: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa 
+Група: math 
+Кредити: 1 
