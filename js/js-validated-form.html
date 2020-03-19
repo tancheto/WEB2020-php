@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+	<title>JS-validated form</title>
+	<script src="validation.js"></script>
+</head>
+<body>
+<h1>JS-validated form</h1>
+
+<form action="./register.php" method="POST" onsubmit="return validate()">
+    <label for="username">Потребителско име</label>
+    <input type="text" id="username">
+	<br>
+	<label for="pass">Парола</label>
+	<input type="password" id="pass">
+	<br>
+    <label for="pass2">Парола втори път</label>
+    <input type="password" id="pass2">
+	<br>
+	<input type="submit" value="Submit">
+</form>
+
+</body>
+</html>
