@@ -8,18 +8,24 @@
 <body>
 <h1>JS-validated form</h1>
 
-<form action="./register.php" method="POST" onsubmit="return validate()">
+<form onsubmit="return validate()" action="./register.php" method="POST"  >
     <label for="username">Потребителско име</label>
-    <input type="text" id="username">
+    <input type="text" id="username" minlength="3" maxlength="10"
+		   placeholder="Въведи потребителско име" required
+		   title="Потребителско име с дължина между 3 и 10 символа. Позволени знаци: букви, цифри и _"/>
 	<br>
 	<label for="pass">Парола</label>
-	<input type="password" id="pass">
+	<input type="password" id="pass" minlength="6" placeholder="Въведи парола" required
+           title="Паролата е с минимална дължина 6. Задължително трябва да включва поне по 1 главна, 1 малка буква и 1 цифра."/>
 	<br>
     <label for="pass2">Парола втори път</label>
-    <input type="password" id="pass2">
+    <input type="password" id="pass2" minlength="6" placeholder="Потвърди парола" required />
 	<br>
 	<input type="submit" value="Submit">
 </form>
+
+<div id= "not-successful-operation"></div>
+<a href='./js-validated-form.html' id="redirection"></a>
 
 </body>
 </html>
