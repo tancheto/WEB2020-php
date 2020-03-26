@@ -8,7 +8,7 @@
 <body>
 <h1>JS-validated form</h1>
 
-<form onsubmit="return validate()" action="./register.php" method="POST"  >
+<form onsubmit="return validate()" method="POST" action="./register.php">
     <label for="username">Потребителско име</label>
     <input type="text" id="username" minlength="3" maxlength="10"
 		   placeholder="Въведи потребителско име" required
@@ -22,10 +22,9 @@
     <input type="password" id="pass2" minlength="6" placeholder="Потвърди парола" required />
 	<br>
 	<input type="submit" value="Submit">
+	<div id="not-successful-operation"></div>
+    <a href='./js-validated-form.html' id="redirection"></a>
 </form>
-
-<div id= "not-successful-operation"></div>
-<a href='./js-validated-form.html' id="redirection"></a>
 
 </body>
 </html>
