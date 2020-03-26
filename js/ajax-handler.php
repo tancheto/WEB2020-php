@@ -1,5 +1,7 @@
 <?php
 
-echo("hello from the other side");
+$jsonStr = file_get_contents('php://input');
+$jsonArr = json_decode($jsonStr);
+var_dump($jsonArr);
 
 ?>

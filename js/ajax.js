@@ -1,6 +1,6 @@
 function onSubmit(){
   
-  url = "./ajax-handler.php";
+  const url = "./ajax-handler.php";
 	
   var callback = function (text) {
   console.log(text);
@@ -10,9 +10,7 @@ function onSubmit(){
   let pass = document.getElementById("pass").value;
   let pass2 = document.getElementById("pass2").value;
 
-  let obj = { "username": username, 
-              "pass": pass , 
-		      "pass2": pass2 };
+  let obj = { username, pass, pass2 };
 
   let jsonToBeSent = JSON.stringify(obj);
 	
@@ -30,7 +28,7 @@ function ajax(url, settings){
     }
   };
    
-  xhr.open("POST", url, /* async */ true);
-  xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-  xhr.send(settings.data);  
+  xhr.open("POST", url);
+  xhr.setRequestHeader("Content-Type", "application/json;");
+  xhr.send(settings.data);
 }
