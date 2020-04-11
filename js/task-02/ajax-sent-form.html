@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+	<title>AJAX sent form</title>
+	<script defer src="ajax.js"></script>
+</head>
+<body>
+<h1>AJAX sent form</h1>
+
+<form id="target" onsubmit="return false">
+    <label for="username">Потребителско име</label>
+    <input type="text" id="username" minlength="3" maxlength="10"
+		   placeholder="Въведи потребителско име" required
+		   title="Потребителско име с дължина между 3 и 10 символа. Позволени знаци: букви, цифри и _"/>
+	<br>
+	<label for="pass">Парола</label>
+	<input type="password" id="pass" minlength="6" placeholder="Въведи парола" required
+           title="Паролата е с минимална дължина 6. Задължително трябва да включва поне по 1 главна, 1 малка буква и 1 цифра."/>
+	<br>
+    <label for="pass2">Парола втори път</label>
+    <input type="password" id="pass2" minlength="6" placeholder="Потвърди парола" required />
+	<br>
+	<input type="submit" value="Submit" onclick="onSubmit();">
+</form>
+
+</body>
+</html>
