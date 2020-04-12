@@ -7,9 +7,7 @@ function addElective($title, $description, $lecturer){
 			( :title, :description, :lecturer)";
 
 	$stmt = $conn->prepare($sql) or die("failed!");
-	$stmt->execute(['title' => $title, 
-					'description' => $description, 
-					'lecturer' => $lecturer]);
+	$stmt->execute(['title' => $title, 'description' => $description, 'lecturer' => $lecturer]);
 }
 
 ?>
