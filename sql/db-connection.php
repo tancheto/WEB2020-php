@@ -1,7 +1,14 @@
 <?php
 
 function addElective($title, $description, $lecturer){
-	$conn = new PDO('mysql:host=localhost;dbname=db_name', 'root', '');
+
+	$host = "localhost";
+	$db = "db_name";
+	$username = "root";
+	$pass = "";
+
+	$conn = new PDO("mysql:host=$host;dbname=$db;charset=utf8", $username, $pass);
+
 	$sql = "INSERT INTO electives (title, description, lecturer)
 			VALUES 
 			( :title, :description, :lecturer)";
