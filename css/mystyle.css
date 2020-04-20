@@ -9,14 +9,14 @@ form {
 }
 
 .form-input {
-	height: 25px;
-	margin: 10px;
+  height: 25px;
+  margin: 10px;
   width: 250px;
 }
 
 #form-title {
-	background-color: #4682B4;
-	height: 30px;
+  background-color: #4682B4;
+  height: 30px;
   width: 100%;
   text-align: center;
   padding-top: 10px;
