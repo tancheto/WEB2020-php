@@ -14,14 +14,19 @@ if (!isset($_SESSION["email"])) {
 include "db-connection.php";
 $conn = openCon();
 
-$sql = "SELECT * from person where email = '" . $_SESSION["email"] . "';";
-$resultSet = $conn->query($sql) or die("Failed to query from DB!");
-$firstrow = $resultSet->fetch(PDO::FETCH_ASSOC) or die ("User not found.");
+$email = $_SESSION["email"];
+
+$sql = "SELECT * from person where email = :email;";
+
+$stmt = $conn->prepare($sql);
+$stmt->bindParam(':email', $email);
+$result = $stmt->execute() or die("Failed to query from DB!");
+$firstrow = $stmt->fetch(PDO::FETCH_ASSOC) or die ("User not found.");
 
 if(strcmp($firstrow["role"], "admin") == 0) {
-	$sql = "SELECT * from person;";
+	$sqlAllUsers = "SELECT * from person;";
 
-	$resultSet = $conn->prepare($sql);
+	$resultSet = $conn->prepare($sqlAllUsers) or die("Failed to query from DB!");
 	$resultSet->execute();
 
 	echo("The users in the system are: <br>");

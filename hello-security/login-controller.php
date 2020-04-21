@@ -12,8 +12,10 @@ $conn = openCon();
 $email = htmlentities($_POST["email"]);
 $password = htmlentities($_POST["password"]);
 
+$sql = "SELECT * from person where email = :email";
+
 //prepared statement - defence against SQL injection
-$stmt = $conn->prepare("SELECT * from person where email = :email");
+$stmt = $conn->prepare($sql);
 
 $stmt->bindParam(':email', $email);
 
