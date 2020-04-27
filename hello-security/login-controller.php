@@ -21,14 +21,14 @@ $stmt->bindParam(':email', $email);
 
 $result = $stmt->execute() or die("Failed to query from DB!");
 
-$firstrow = $stmt->fetch(PDO::FETCH_ASSOC) or die ("Not valid email.");
+$firstrow = $stmt->fetch(PDO::FETCH_ASSOC) or die ("Not valid email or/and password.");
 
 if (password_verify($password, $firstrow['password'])) {
 	echo("Hello " . $firstrow['firstname'] . " you are now logged in.");
 	session_start();
 	$_SESSION["email"] = $firstrow['email'];
 } else {
-	die ("Not valid password for the provided email.");
+	die ("Not valid email or/and password.");
 }
 
 ?>
