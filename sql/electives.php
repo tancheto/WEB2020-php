@@ -4,15 +4,15 @@ include "validation.php";
 
 $requestMethod = $_SERVER['REQUEST_METHOD'];
 
+$url = $_SERVER['REQUEST_URI'];
+$id = basename($url);
+$pattern = "/[0-9]+/";
+
+if(empty($id)){
+    die("You should have a number as a path param.");
+}
+
 if($requestMethod == "GET") {
-
-    $url = $_SERVER['REQUEST_URI'];
-    $id = basename($url);
-    $pattern = "/[0-9]+/";
-
-    if(empty($id)){
-        die("You should have a number as a path param.");
-    }
 
     if(!preg_match($pattern, $id)) {
         die("Path parameter should be a number.");
@@ -26,7 +26,6 @@ if($requestMethod == "GET") {
 
     $logfile = fopen("logfile_update.txt", "w");
 
-    $id = $_POST["id"];
     $title = $_POST["title"];
     $lecturer = $_POST["lecturer"];
     $description = $_POST["description"];
@@ -35,7 +34,7 @@ if($requestMethod == "GET") {
 	validate("lecturer", MAX_LENGTH_LECTURER, $lecturer, $valid, $errors);
     validate("description", MAX_LENGTH_DESCR, $description, $valid, $errors);
     
-    if(validateId($id)) {
+    if(existsId($id)) {
 
         if(count($errors) == 0) {
             fwrite($logfile, "ID на предмет: " . $id . " \n");
@@ -64,5 +63,3 @@ if($requestMethod == "GET") {
         echo ("Id doesn't exist. \n");
     }
 }
-
-?>

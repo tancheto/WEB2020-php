@@ -1,6 +1,7 @@
 <?php
 
-function addElective($title, $description, $lecturer) {
+function addElective($title, $description, $lecturer)
+{
 
 	try {
 		$conn = makeConnection();
@@ -11,13 +12,13 @@ function addElective($title, $description, $lecturer) {
 
 		$stmt = $conn->prepare($sql) or die("failed!");
 		$stmt->execute(['title' => $title, 'description' => $description, 'lecturer' => $lecturer]);
+	} catch (PDOException $error) {
+		die($error->getMessage());
 	}
-	catch(PDOException $error) {
-    	die($error->getMessage());
-    }
 }
 
-function getById($id) {
+function getById($id)
+{
 	try {
 		$conn = makeConnection();
 
@@ -25,21 +26,26 @@ function getById($id) {
 
 		$stmt = $conn->prepare($sql) or die("Failed to prepare statement!");
 		$stmt->bindParam(':id', $id);
-		$result = $stmt->execute() or die("Failed to query from DB!");
+		$stmt->execute() or die("Failed to query from DB!");
 
-		$elective = $stmt->fetch(PDO::FETCH_ASSOC) or die ("Elective not found.");
+		$elective = $stmt->fetch(PDO::FETCH_ASSOC) or die("Elective not found.");
 
-		echo ("Elective with id: " . $id . "<br>");
-		echo ("Title: " . $elective["title"] . "<br>");
-		echo ("Description: " . $elective["description"] . "<br>");
-		echo ("Lecturer: " . $elective["lecturer"] . "<br>");
+		echo "<form method='POST'>";
+		echo "<label for='course-title'>Име на предмета</label>";
+		echo "<input type='text' id='course-title' name='title' value=" . $elective["title"] . "><br>";
+		echo "<label for='description'>Описание</label>";
+		echo "<input type='text' id='description' name='description' value=" . $elective["description"] . "><br>";
+		echo "<label for='lecturer'>Преподавател</label>";
+		echo "<input type='text' id='lecturer' name='lecturer' value=" . $elective["lecturer"] . "><br>";
+		echo "<input type='submit' value='Submit'>";
+		echo "</form>";
+	} catch (PDOException $error) {
+		die($error->getMessage());
 	}
-	catch(PDOException $error) {
-    	die($error->getMessage());
-    }
 }
 
-function validateId($id) {
+function existsId($id)
+{
 	try {
 		$conn = makeConnection();
 
@@ -50,14 +56,14 @@ function validateId($id) {
 		$result = $stmt->execute() or die("Failed to query from DB!");
 		$elective = $stmt->fetch(PDO::FETCH_ASSOC);
 
-		return ! empty($elective);
+		return !empty($elective);
+	} catch (PDOException $error) {
+		die($error->getMessage());
 	}
-	catch(PDOException $error) {
-    	die($error->getMessage());
-    }
 }
 
-function updateElective($id, $title, $description, $lecturer) {
+function updateElective($id, $title, $description, $lecturer)
+{
 	try {
 		$conn = makeConnection();
 
@@ -70,13 +76,13 @@ function updateElective($id, $title, $description, $lecturer) {
 		$stmt->bindParam(':lecturer', $lecturer);
 
 		$stmt->execute() or die("Failed to query from DB!");
+	} catch (PDOException $error) {
+		die($error->getMessage());
 	}
-	catch(PDOException $error) {
-    	die($error->getMessage());
-    }
 }
 
-function makeConnection() {
+function makeConnection()
+{
 
 	$host = "localhost";
 	$db = "universitySystem";
@@ -85,11 +91,8 @@ function makeConnection() {
 
 	try {
 		$conn = new PDO("mysql:host=$host;dbname=$db;charset=utf8", $username, $pass);
+	} catch (PDOException $error) {
+		die($error->getMessage());
 	}
-	catch(PDOException $error) {
-    	die($error->getMessage());
-	}	
 	return $conn;
 }
-
-?>
